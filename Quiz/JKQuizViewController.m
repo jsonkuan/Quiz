@@ -11,16 +11,21 @@
 
 @interface JKQuizViewController ()
 
+- (void)toggleButtonEnabled: (BOOL) toggle;
+
 @end
 
 @implementation JKQuizViewController
 
-- (IBAction)guessAlternativeAnswer:(id)sender {
+- (void) viewDidLoad {
+    [super viewDidLoad];
+    
+//    JKQuestion *question = [[JKQuestion alloc] init];
+}
 
-    [self.answerOne   setEnabled:NO];
-    [self.answerTwo   setEnabled:NO];
-    [self.answerThree setEnabled:NO];
-    [self.answerFour  setEnabled:NO];
+- (IBAction)guessOneOfFourAlternativeAnswers:(id)sender {
+
+    [self toggleButtonEnabled: NO];
     
     BOOL answer;
     if (answer) {
@@ -33,16 +38,21 @@
 }
 
 - (IBAction)showQuestion:(id)sender {
-    [_playGameButton setTitle: @"Next" forState: UIControlStateNormal];
+    [self.playGameButton setTitle: @"Next" forState: UIControlStateNormal];
+    [self toggleButtonEnabled: YES];
     
-    self.questionLabel.text = @"How old am I?";
     self.isAnswerCorrectLabel.text = @"?";
-    
-    [self.answerOne setEnabled:YES];
-    [self.answerTwo setEnabled:YES];
-    [self.answerThree setEnabled:YES];
-    [self.answerFour setEnabled:YES];
-    
+    //self.questionLabel.text = //  DICTIONARY OR ARRAY
+}
+
+- (void)toggleButtonEnabled: (BOOL)toggle{
+    [self.answerOne   setEnabled:toggle];
+    [self.answerTwo   setEnabled:toggle];
+    [self.answerThree setEnabled:toggle];
+    [self.answerFour  setEnabled:toggle];
+}
+
+- (void)setButtonTitleToAnswers {
     [_answerOne setTitle: @"20" forState: UIControlStateNormal];
     [_answerTwo setTitle: @"25" forState: UIControlStateNormal];
     [_answerThree setTitle: @"28" forState: UIControlStateNormal];

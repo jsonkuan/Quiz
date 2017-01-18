@@ -10,7 +10,10 @@
 
 @interface JKQuestion : NSObject
 
-@property (nonatomic, copy) NSDictionary *questionDictionary;
+@property (nonatomic, readonly, copy) NSDictionary *questionDictionary;
 
+//Designated Initializer (Currently Only)
+-(instancetype)initWithDictionary: (NSDictionary *) questionDictionary;
++(instancetype)randomQuestion;
 
 @end

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -38,7 +39,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="guessAlternativeAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hOF-bt-vzR"/>
+                                    <action selector="guessOneOfFourAlternativeAnswers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bce-M2-pON"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sEw-YV-yLH">
@@ -58,7 +59,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="guessAlternativeAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nU9-ci-MAZ"/>
+                                    <action selector="guessOneOfFourAlternativeAnswers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xZr-gd-glk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBO-34-blk">
@@ -78,7 +79,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="guessAlternativeAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n3e-ZF-L9d"/>
+                                    <action selector="guessOneOfFourAlternativeAnswers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lhe-mx-vZl"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwQ-Id-h8M">
@@ -114,7 +115,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="guessAlternativeAnswer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iN3-Kd-wdg"/>
+                                    <action selector="guessOneOfFourAlternativeAnswers:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0bl-iW-HIe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZJ-fK-foD">
@@ -145,7 +146,7 @@
                         <outlet property="isAnswerCorrectLabel" destination="qWe-AI-7JB" id="5NY-J7-H4e"/>
                         <outlet property="playGameButton" destination="FZJ-fK-foD" id="4ud-t7-SXe"/>
                         <outlet property="questionLabel" destination="mwQ-Id-h8M" id="xBN-cq-48h"/>
-                        <segue destination="ZkJ-2R-XzU" kind="show" id="ulU-2O-BYK"/>
+                        <segue destination="ZkJ-2R-XzU" kind="show" identifier="PushToResultSegue" id="ulU-2O-BYK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -179,7 +180,10 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="showQuestion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QTS-x9-ZxC"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="szB-GJ-TSs"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="playAgainSegue" id="szB-GJ-TSs">
+                                        <segue key="commit" destination="BYZ-38-t0r" kind="show" identifier="playAgainSegue" id="bGP-OM-sDR"/>
+                                        <segue key="preview" inheritsFrom="commit" id="hId-pK-9sN"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="🤘🏼" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEz-MV-QGX">
@@ -204,7 +208,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qLL-qo-5NK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1050" y="118"/>
+            <point key="canvasLocation" x="1058" y="-479"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="szB-GJ-TSs"/>
+    </inferredMetricsTieBreakers>
 </document>
