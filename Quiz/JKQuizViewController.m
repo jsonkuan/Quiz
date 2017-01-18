@@ -11,18 +11,16 @@
 
 @interface JKQuizViewController ()
 
-
 @end
-
 
 @implementation JKQuizViewController
 
 - (IBAction)guessAlternativeAnswer:(id)sender {
 
-    [self.answerOne setEnabled:NO];
-    [self.answerTwo setEnabled:NO];
+    [self.answerOne   setEnabled:NO];
+    [self.answerTwo   setEnabled:NO];
     [self.answerThree setEnabled:NO];
-    [self.answerFour setEnabled:NO];
+    [self.answerFour  setEnabled:NO];
     
     BOOL answer;
     if (answer) {
