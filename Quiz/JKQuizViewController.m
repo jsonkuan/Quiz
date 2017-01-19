@@ -7,20 +7,39 @@
 //
 
 #import "JKQuizViewController.h"
-#import "JKQuestion.h"
+#import "JKQuiz.h"
 
 @interface JKQuizViewController ()
 
+@property (nonatomic, weak) NSString *testString;
+@property (nonatomic, copy) NSDictionary *dictionary;
+
 - (void)toggleButtonEnabled: (BOOL) toggle;
+- (void)setButtonTitleToAnswers: (NSArray *) answerArray;
 
 @end
+
 
 @implementation JKQuizViewController
 
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-//    JKQuestion *question = [[JKQuestion alloc] init];
+    JKQuiz *quiz = [[JKQuiz alloc] initWithQuestionAndAnswerArray: quiz.questionArray
+                                                              withAnswerArray: quiz.answerArray];
+    for (NSString *question in quiz.questionArray) {
+        NSLog(@"%@", question);
+    }
+    
+//    self.questions = @[@"question1",
+//                       @"question2",
+//                       @"question3 "];
+    
+    self.answers = @[@"a1",
+                     @"a2",
+                     @"a3",
+                     @"a4"];
+    
 }
 
 - (IBAction)guessOneOfFourAlternativeAnswers:(id)sender {
@@ -42,7 +61,12 @@
     [self toggleButtonEnabled: YES];
     
     self.isAnswerCorrectLabel.text = @"?";
-    //self.questionLabel.text = //  DICTIONARY OR ARRAY
+    self.questionLabel.text = self.questions[0];
+    //[self setButtonTitleToAnswers: [self.dictionary allKeysForObject: @"q1"]];
+    [self setButtonTitleToAnswers: _answers];
+    
+    
+    //NSString *questionOne = [dictionary objectForKey:@"q1"];
 }
 
 - (void)toggleButtonEnabled: (BOOL)toggle{
@@ -52,11 +76,11 @@
     [self.answerFour  setEnabled:toggle];
 }
 
-- (void)setButtonTitleToAnswers {
-    [_answerOne setTitle: @"20" forState: UIControlStateNormal];
-    [_answerTwo setTitle: @"25" forState: UIControlStateNormal];
-    [_answerThree setTitle: @"28" forState: UIControlStateNormal];
-    [_answerFour setTitle: @"29" forState: UIControlStateNormal];
+- (void)setButtonTitleToAnswers: (NSArray*) array {
+        [_answerOne setTitle: array[0] forState: UIControlStateNormal];
+        [_answerTwo setTitle: array[1] forState: UIControlStateNormal];
+        [_answerThree setTitle: array[2] forState: UIControlStateNormal];
+        [_answerFour setTitle: array[3] forState: UIControlStateNormal];
 }
 
 @end

@@ -10,10 +10,10 @@
 
 @interface JKQuizViewController : UIViewController
 
-//@property (nonatomic) int currentQuestionIndex;
+@property (nonatomic) int currentQuestionIndex;
 
-//@property (nonatomic, copy) NSArray *questions;
-//@property (nonatomic, copy) NSArray *answers;
+@property (nonatomic, copy) NSArray *questions;
+@property (nonatomic, copy) NSArray *answers;
 
 @property (weak, nonatomic) IBOutlet UILabel *isAnswerCorrectLabel;
 @property (weak, nonatomic) IBOutlet UILabel *questionLabel;
