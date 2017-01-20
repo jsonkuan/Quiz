@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C2EF4431E30E513000E4C1C /* JKQuiz.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C2EF4421E30E513000E4C1C /* JKQuiz.m */; };
 		9CDBDEA91E2E271A00C36338 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBDEA81E2E271A00C36338 /* main.m */; };
 		9CDBDEAC1E2E271A00C36338 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBDEAB1E2E271A00C36338 /* AppDelegate.m */; };
 		9CDBDEAF1E2E271A00C36338 /* JKQuizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBDEAE1E2E271A00C36338 /* JKQuizViewController.m */; };
@@ -15,7 +16,6 @@
 		9CDBDEB71E2E271A00C36338 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9CDBDEB51E2E271A00C36338 /* LaunchScreen.storyboard */; };
 		9CDBDEC21E2E271A00C36338 /* QuizTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBDEC11E2E271A00C36338 /* QuizTests.m */; };
 		9CDBDECD1E2E271A00C36338 /* QuizUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBDECC1E2E271A00C36338 /* QuizUITests.m */; };
-		9CDBDEDC1E2E2C4100C36338 /* JKQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CDBDEDB1E2E2C4100C36338 /* JKQuestion.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C2EF4411E30E513000E4C1C /* JKQuiz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKQuiz.h; sourceTree = "<group>"; };
+		9C2EF4421E30E513000E4C1C /* JKQuiz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKQuiz.m; sourceTree = "<group>"; };
 		9CDBDEA41E2E271A00C36338 /* Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CDBDEA81E2E271A00C36338 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9CDBDEAA1E2E271A00C36338 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -52,8 +54,6 @@
 		9CDBDEC81E2E271A00C36338 /* QuizUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuizUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CDBDECC1E2E271A00C36338 /* QuizUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuizUITests.m; sourceTree = "<group>"; };
 		9CDBDECE1E2E271A00C36338 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9CDBDEDA1E2E2C4000C36338 /* JKQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKQuestion.h; sourceTree = "<group>"; };
-		9CDBDEDB1E2E2C4100C36338 /* JKQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKQuestion.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,9 +108,9 @@
 				9CDBDEAB1E2E271A00C36338 /* AppDelegate.m */,
 				9CDBDEAD1E2E271A00C36338 /* JKQuizViewController.h */,
 				9CDBDEAE1E2E271A00C36338 /* JKQuizViewController.m */,
+				9C2EF4411E30E513000E4C1C /* JKQuiz.h */,
+				9C2EF4421E30E513000E4C1C /* JKQuiz.m */,
 				9CDBDEB01E2E271A00C36338 /* Main.storyboard */,
-				9CDBDEDA1E2E2C4000C36338 /* JKQuestion.h */,
-				9CDBDEDB1E2E2C4100C36338 /* JKQuestion.m */,
 				9CDBDEB31E2E271A00C36338 /* Assets.xcassets */,
 				9CDBDEB51E2E271A00C36338 /* LaunchScreen.storyboard */,
 				9CDBDEB81E2E271A00C36338 /* Info.plist */,
@@ -282,7 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CDBDEAF1E2E271A00C36338 /* JKQuizViewController.m in Sources */,
-				9CDBDEDC1E2E2C4100C36338 /* JKQuestion.m in Sources */,
+				9C2EF4431E30E513000E4C1C /* JKQuiz.m in Sources */,
 				9CDBDEAC1E2E271A00C36338 /* AppDelegate.m in Sources */,
 				9CDBDEA91E2E271A00C36338 /* main.m in Sources */,
 			);

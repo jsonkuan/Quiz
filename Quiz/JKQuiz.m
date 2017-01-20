@@ -16,24 +16,21 @@
 @implementation JKQuiz
 
 //Designated Initializer
-- (instancetype) initWithQuestionAndAnswerArray:(NSArray *)questionArray withAnswerArray:(NSArray *)answerArray {
+- (instancetype) init {
     self = [super init];
     if (self) {
-        _questionArray = questionArray;
-        _answerArray = answerArray;
-        
-        questionArray = @[@"How old am I?",
+        self.questionArray = @[@"How old am I?",
                           @"What is a flock of unicorns called?",
                           @"What caused the silence of the lamms?",
-                          @"What color is coca-cola without coloring?",
-                          @"What is the average heartrate of a hedgehog?",
-                          @"How much faster to fingernails grow than toe nails?",
-                          @"Whom of the following was vegetarian and had one testicle?",
-                          @"How long can a cockroach live with its head cut off?",
+                          @"What color is coca-cola \n without coloring?",
+                          @"What is the average heartrate \n of a hedgehog?",
+                          @"How much faster to fingernails \n grow than toe nails?",
+                          @"Whom of the following was \nvegetarian and had one testicle?",
+                          @"How long can a cockroach live\n with its head cut off?",
                           @"How long can a snail sleep for?",
-                          @"Which of the following foods is an ingredient in dynamite?"];
+                          @"Which of the following foods is\n an ingredient in dynamite?"];
         
-        answerArray =   @[@"26", @"27", @"28", @"29",
+        self.answerArray =   @[@"26", @"27", @"28", @"29",
                           @"Pretty", @"Blessing", @"Horses", @"Pony",
                           @"Chuck Norris", @"Big Bad Wolf", @"Steve Jobs", @"2Pac",
                           @"Black", @"Brown", @"Clear", @"Green",
@@ -47,33 +44,13 @@
     return self;
 }
 
-- (instancetype) initWithAnswerArray:(NSArray *) answerArray {
-    return [self initWithAnswerArray: answerArray];
+-(int) randomNumber{
+    return arc4random() % self.questionArray.count;
 }
 
-- (instancetype) initWithQuestionArray:(NSArray *) questionArray {
-    return [self initWithQuestionArray: questionArray];
-}
-
-- (instancetype) initWithDictionary:(NSDictionary *)questionDictionary {
-    return [self initWithDictionary: questionDictionary]; {
-    }
-}
-
-//Iniitializer Chaining by Overriding init (Don't really get it)
-//- (instancetype) init {
-//    return [self initWithQuestionAndAnswerArray: @questionArray withAnswerArray: @"answerArray"];
-//}
-
-+ (instancetype) randomQuestion {
-    NSLog(@"RANDOM SOMETHING HAPPEND");
-    return nil; 
-}
-
-+ (NSString*) returnQuestion {
-    
+-(NSString*) returnQuestion {
     NSString *str = [[NSString alloc] init];
-    str = @"This is a question;";
+    str = self.questionArray[self.randomQuestion];
     return str;
 }
 

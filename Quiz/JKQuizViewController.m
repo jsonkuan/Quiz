@@ -11,11 +11,10 @@
 
 @interface JKQuizViewController ()
 
-@property (nonatomic, weak) NSString *testString;
-@property (nonatomic, copy) NSDictionary *dictionary;
+- (void)enableButtons: (BOOL) toggle;
+- (void)setButtonTitleToAnswers;
 
-- (void)toggleButtonEnabled: (BOOL) toggle;
-- (void)setButtonTitleToAnswers: (NSArray *) answerArray;
+@property (nonatomic) JKQuiz *quiz;
 
 @end
 
@@ -25,28 +24,16 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     
-    JKQuiz *quiz = [[JKQuiz alloc] initWithQuestionAndAnswerArray: quiz.questionArray
-                                                              withAnswerArray: quiz.answerArray];
-    for (NSString *question in quiz.questionArray) {
-        NSLog(@"%@", question);
-    }
-    
-//    self.questions = @[@"question1",
-//                       @"question2",
-//                       @"question3 "];
-    
-    self.answers = @[@"a1",
-                     @"a2",
-                     @"a3",
-                     @"a4"];
-    
+    self.quiz = [[JKQuiz alloc] init];
+    self.currentQuestionIndex = 0;
+    self.currentAnswerIndex = 0;
 }
 
 - (IBAction)guessOneOfFourAlternativeAnswers:(id)sender {
 
-    [self toggleButtonEnabled: NO];
+    [self enableButtons: NO];
     
-    BOOL answer;
+    BOOL answer;  //Eventually change to check if answer is correct; 
     if (answer) {
         _isAnswerCorrectLabel.text = @"👍🏼";
         answer = NO;
@@ -58,29 +45,30 @@
 
 - (IBAction)showQuestion:(id)sender {
     [self.playGameButton setTitle: @"Next" forState: UIControlStateNormal];
-    [self toggleButtonEnabled: YES];
+    [self enableButtons: YES];
     
     self.isAnswerCorrectLabel.text = @"?";
-    self.questionLabel.text = self.questions[0];
-    //[self setButtonTitleToAnswers: [self.dictionary allKeysForObject: @"q1"]];
-    [self setButtonTitleToAnswers: _answers];
+    self.questionLabel.text = _quiz.questionArray[_currentQuestionIndex] ;
+    [self setButtonTitleToAnswers];
+ 
     
-    
-    //NSString *questionOne = [dictionary objectForKey:@"q1"];
+    self.currentAnswerIndex += 4;
+    self.currentQuestionIndex++;
 }
 
-- (void)toggleButtonEnabled: (BOOL)toggle{
+- (void)enableButtons: (BOOL)toggle{
     [self.answerOne   setEnabled:toggle];
     [self.answerTwo   setEnabled:toggle];
     [self.answerThree setEnabled:toggle];
     [self.answerFour  setEnabled:toggle];
+    [self.playGameButton setEnabled:!toggle];
 }
 
-- (void)setButtonTitleToAnswers: (NSArray*) array {
-        [_answerOne setTitle: array[0] forState: UIControlStateNormal];
-        [_answerTwo setTitle: array[1] forState: UIControlStateNormal];
-        [_answerThree setTitle: array[2] forState: UIControlStateNormal];
-        [_answerFour setTitle: array[3] forState: UIControlStateNormal];
+- (void)setButtonTitleToAnswers {
+    [_answerOne setTitle: _quiz.answerArray[_currentAnswerIndex] forState: UIControlStateNormal];
+    [_answerTwo setTitle: _quiz.answerArray[_currentAnswerIndex+1] forState: UIControlStateNormal];
+    [_answerThree setTitle: _quiz.answerArray[_currentAnswerIndex+2] forState: UIControlStateNormal];
+    [_answerFour setTitle: _quiz.answerArray[_currentAnswerIndex+3] forState: UIControlStateNormal];
 }
 
 @end

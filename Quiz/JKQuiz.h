@@ -13,18 +13,19 @@
 @property (nonatomic, readonly, copy) NSDictionary *questionDictionary;
 @property (nonatomic, copy) NSArray *answerArray;
 @property (nonatomic, copy) NSArray *questionArray;
+@property (nonatomic) int currentQuestionIndex;
 
 //Designated Initializer
--(instancetype)initWithQuestionAndAnswerArray: (NSArray *) questionArray
-                              withAnswerArray: (NSArray*) answerArray;
-
--(instancetype)initWithQuestionArray: (NSArray *) questionArray;
--(instancetype)initWithAnswerArray: (NSArray *) answerArray;
--(instancetype)initWithDictionary: (NSDictionary *) questionDictionary;
-
-
+//-(instancetype)initWithQuestionAndAnswerArray: (NSArray *) questionArray
+//                              withAnswerArray: (NSArray*) answerArray;
+//
+//-(instancetype)initWithQuestionArray: (NSArray *) questionArray;
+//-(instancetype)initWithAnswerArray: (NSArray *) answerArray;
+//-(instancetype)initWithDictionary: (NSDictionary *) questionDictionary;
 
 +(instancetype)randomQuestion;
 +(NSString*) returnQuestion;
+
+- (int)randomQuestion;
 
 @end
