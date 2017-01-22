@@ -15,10 +15,10 @@
 - (void)enableButtons: (BOOL) toggle;
 - (void)setButtonTitleToAnswers: (NSMutableArray*) questionArray;
 
+@property (nonatomic) NSMutableArray *questionAnswerArray;
 @property (nonatomic) JKQuiz *quiz;
 
 @end
-
 
 @implementation JKQuizViewController
 
@@ -28,14 +28,13 @@
 }
 
 - (IBAction)showQuestion:(id)sender {
-    NSMutableArray *questionAnswerArray  = [[self.quiz.questionDictionary allValues] mutableCopy];
-    NSString *question = [questionAnswerArray[self.quiz.currentQuestionIndex] objectAtIndex:0];
+    self.questionAnswerArray  = [[self.quiz.questionDictionary allValues] mutableCopy];
+    NSString *question = [self.questionAnswerArray[self.quiz.currentQuestionIndex] objectAtIndex:0];
     self.questionLabel.text = question;
     
-    NSString *correcto = [questionAnswerArray[self.quiz.currentQuestionIndex] objectAtIndex:1];
-    NSLog(@"%@", correcto);
+    self.quiz.correctAnswer = [self.questionAnswerArray[self.quiz.currentQuestionIndex] objectAtIndex:1];
+    [self setButtonTitleToAnswers: self.questionAnswerArray];
     
-    [self setButtonTitleToAnswers: questionAnswerArray];
     [self enableButtons: YES];
     [self.playGameButton setTitle: @"Next" forState: UIControlStateNormal];
     
@@ -46,8 +45,7 @@
 - (IBAction)guessOneOfFourAlternativeAnswers:(UIButton*)sender {
     
     [self enableButtons: NO];
-    
-    if (sender.tag == self.quiz.correctAnswer) {
+    if ([sender.titleLabel.text isEqualToString:self.quiz.correctAnswer]) {
         self.isAnswerCorrectLabel.text = @"👍🏼";
         self.quiz.result++;
     } else {
