@@ -22,23 +22,30 @@
         self.result = 0;
         
         [self createDictionary];
-        [self reduceDictionaryToFive: _questionDictionary];
+        [self createFiveQuestionDictionary: _allQuestionsDictionary];
     }
     return self;
 }
 
-- (void) reduceDictionaryToFive: (NSMutableDictionary*) questions {
-    for (NSUInteger i = questions.count; i >= 5; i--) {
+- (void) createFiveQuestionDictionary: (NSMutableDictionary*) questions {
+    
+    self.questionDictionary = [@{}mutableCopy];
+    for (int i = 0; i < 5; i++) {
         int randomInt = arc4random() % [questions count];
-        
-        NSMutableString* key = [NSMutableString stringWithFormat:@"q%d", randomInt];
-        [self.questionDictionary removeObjectForKey:key];
+        NSMutableString *key = [NSMutableString stringWithFormat:@"q%d", randomInt];
+        if ([self.allQuestionsDictionary objectForKey:key]) {
+            id value = self.allQuestionsDictionary[key];
+            [self.questionDictionary setObject: value forKey:key];
+            [self.allQuestionsDictionary removeObjectForKey:key];
+        } else {
+            i--;
+        }
     }
 }
 
 //Format of Array: [question, correctAnswer, incorrect, incorrect, incorrect]
 - (void) createDictionary {
-        self.questionDictionary = [@{
+        self.allQuestionsDictionary = [@{
                 @"q1" : [@[@"How old am I?",
                           @"29", @"31", @"28", @"30"] mutableCopy] ,
 

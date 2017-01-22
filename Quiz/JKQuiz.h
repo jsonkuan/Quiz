@@ -11,6 +11,7 @@
 @interface JKQuiz : NSObject
 
 @property (nonatomic) NSMutableDictionary *questionDictionary;
+@property (nonatomic) NSMutableDictionary *allQuestionsDictionary;
 @property (nonatomic) NSString *correctAnswer;
 
 @property (nonatomic) int currentQuestionIndex;
