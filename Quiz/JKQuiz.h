@@ -11,10 +11,10 @@
 @interface JKQuiz : NSObject
 
 @property (nonatomic) NSMutableDictionary *questionDictionary;
+@property (nonatomic) NSMutableArray *singleQuestion;
 
 @property (nonatomic) int currentQuestionIndex;
-//@property (nonatomic) int currentAnswerIndex;
-//@property (nonatomic) int correctAnswerIndex;
+@property (nonatomic) int correctAnswer;
 @property (nonatomic) int result; 
 
 

@@ -13,7 +13,7 @@
 @interface JKQuizViewController ()
 
 - (void)enableButtons: (BOOL) toggle;
-- (void)setButtonTitleToAnswers: (NSArray*) questionArray;
+- (void)setButtonTitleToAnswers: (NSMutableArray*) questionArray;
 
 @property (nonatomic) JKQuiz *quiz;
 
@@ -24,17 +24,18 @@
 
 - (void) viewDidLoad {
     [super viewDidLoad];
-    
-    self.quiz = [[JKQuiz alloc] init]; //Generates Random array [0] = @"q8" : @"[1,2,3,4,5]
-
+    self.quiz = [[JKQuiz alloc] init];
 }
 
 - (IBAction)showQuestion:(id)sender {
-    NSArray *questionsArray  = [self.quiz.questionDictionary allValues];
-    NSString *question = [questionsArray[self.quiz.currentQuestionIndex] objectAtIndex:0];
+    NSMutableArray *questionAnswerArray  = [[self.quiz.questionDictionary allValues] mutableCopy];
+    NSString *question = [questionAnswerArray[self.quiz.currentQuestionIndex] objectAtIndex:0];
     self.questionLabel.text = question;
     
-    [self setButtonTitleToAnswers: questionsArray];
+    NSString *correcto = [questionAnswerArray[self.quiz.currentQuestionIndex] objectAtIndex:1];
+    NSLog(@"%@", correcto);
+    
+    [self setButtonTitleToAnswers: questionAnswerArray];
     [self enableButtons: YES];
     [self.playGameButton setTitle: @"Next" forState: UIControlStateNormal];
     
@@ -45,10 +46,10 @@
 - (IBAction)guessOneOfFourAlternativeAnswers:(UIButton*)sender {
     
     [self enableButtons: NO];
-    if (sender.tag == 1) {
+    
+    if (sender.tag == self.quiz.correctAnswer) {
         self.isAnswerCorrectLabel.text = @"👍🏼";
         self.quiz.result++;
-        
     } else {
         self.isAnswerCorrectLabel.text = @"👎🏼";
     }
@@ -73,12 +74,21 @@
     [self.playGameButton setEnabled:!toggle];
 }
 
-// TODO: Shuffle object index
-- (void)setButtonTitleToAnswers: (NSArray*) questionArray {
-        [_answerOne setTitle:[questionArray[self.quiz.currentQuestionIndex] objectAtIndex: 1] forState: UIControlStateNormal];
-        [_answerTwo setTitle:[questionArray[self.quiz.currentQuestionIndex] objectAtIndex: 2] forState: UIControlStateNormal];
-        [_answerThree setTitle:[questionArray[self.quiz.currentQuestionIndex] objectAtIndex: 3] forState: UIControlStateNormal];
-        [_answerFour setTitle:[questionArray[self.quiz.currentQuestionIndex] objectAtIndex: 4] forState: UIControlStateNormal];
+- (void)setButtonTitleToAnswers: (NSMutableArray*) questionArray {
+   
+    NSMutableArray *numbers = [NSMutableArray arrayWithObjects: @1, @2, @3, @4, nil] ;
+    for(int i = 0; i < numbers.count; i++){
+        [numbers exchangeObjectAtIndex:i withObjectAtIndex:arc4random() % numbers.count];
+    }
+    int one = [numbers[0] intValue];
+    int two = [numbers[1] intValue];
+    int three = [numbers[2] intValue];
+    int four = [numbers[3] intValue];
+    
+    [_answerOne setTitle:[questionArray[self.quiz.currentQuestionIndex] objectAtIndex: one] forState: UIControlStateNormal];
+    [_answerTwo setTitle:[questionArray[self.quiz.currentQuestionIndex] objectAtIndex: two]  forState: UIControlStateNormal];
+    [_answerThree setTitle:[questionArray[self.quiz.currentQuestionIndex] objectAtIndex:three] forState: UIControlStateNormal];
+    [_answerFour setTitle:[questionArray[self.quiz.currentQuestionIndex] objectAtIndex: four] forState: UIControlStateNormal];
 }
 
 @end
